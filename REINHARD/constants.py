@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 ################TOKENandDEVTHINGS################
 load_dotenv()
 TOKEN = os.environ["DISCORD_BOT_TOKEN"]
-
-GUILD_ID = 488677373835870208
+DEFAULT_GUILD_ID = 488677373835870208
 STDOUT_CHANNEL_ID = 878383240086421514
 
 ################sourceCodeGithub################
