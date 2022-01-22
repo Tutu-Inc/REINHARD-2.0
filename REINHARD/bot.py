@@ -1,7 +1,7 @@
 import os
 import hikari
 import lightbulb
-from REINHARD.constants import TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID
+from REINHARD.constants import GITHUB_LINK, TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID
 
 bot = lightbulb.BotApp(
    token = TOKEN,
@@ -23,7 +23,7 @@ async def print_message(event: hikari.GuildMessageCreateEvent) -> None:
 @bot.listen(hikari.StartedEvent)
 async def on_started(event) -> None:
    channel = await bot.rest.fetch_channel(STDOUT_CHANNEL_ID)
-   await channel.send("online")
+   await channel.send(GITHUB_LINK)
    print("Im started")
 
 @bot.command()
