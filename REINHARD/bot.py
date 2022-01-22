@@ -30,7 +30,7 @@ async def on_started(event: hikari.StartedEvent) -> None:
 #@lightbulb.add_checks(lightbulb.owner_only, lightbulb.has_roles(601422939765604400))
 @lightbulb.option("text", "The thing to say.")
 @lightbulb.command("say", "Make the bot say something.")
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.SlashCommand, lightbulb.PrefixCommand)
 async def cmd_say(ctx: lightbulb.SlashContext) -> None:
    await ctx.respond(ctx.options.text)
 
