@@ -1,7 +1,7 @@
 import os
 import hikari
 import lightbulb
-from REINHARD.constants import GITHUB_LINK, TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID
+from constants import GITHUB_LINK, TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID
 
 bot = lightbulb.BotApp(
    token = TOKEN,
