@@ -1,7 +1,7 @@
 import os
 import hikari
 import lightbulb
-from data import GITHUB_LINK, TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID
+from data import TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID, Style
 
 bot = lightbulb.BotApp(
    token = TOKEN,
@@ -10,33 +10,28 @@ bot = lightbulb.BotApp(
    default_enabled_guilds = DEFAULT_GUILD_ID,
    help_slash_command=True,
    banner=None,
-   case_insensitive_prefix_commands=True
+   case_insensitive_prefix_commands=True,
+   logs=None
 )
 
-@bot.listen(hikari.GuildMessageCreateEvent)
-async def print_message(event: hikari.GuildMessageCreateEvent) -> None:
-   if event.is_bot or not event.content:
-      return
-   else:
-      print(event.content)
-
+#============START-MESSAGE============
 @bot.listen(hikari.StartedEvent)
-async def on_started(event) -> None:
+async def on_started(event: hikari.StartedEvent) -> None:
    channel = await bot.rest.fetch_channel(STDOUT_CHANNEL_ID)
-   await channel.send(GITHUB_LINK)
-   print("Im started")
+   await channel.send(str(bot.get_me().username) + ' is online.')
+   print(Style.GREEN + str(bot.get_me()) + ' is online.')
 
-@bot.command()
-@lightbulb.add_cooldown(5.0, 1, lightbulb.UserBucket)
-@lightbulb.option("text", "The thing to say.")
-@lightbulb.command("say", "Make the bot say something.")
-@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
-async def cmd_say(ctx: lightbulb.Context) -> None:
-   await ctx.respond(ctx.options.text)
+#============ERROR-MESSAGE============
+@bot.listen(lightbulb.CommandErrorEvent)
+async def on_error(event: lightbulb.CommandErrorEvent) -> None:
+   if isinstance(event.exception, lightbulb.CommandInvocationError):
+        await event.context.respond(f"Something went wrong during invocation of command `{event.context.command.name}`.")
+        raise event.exception
+
+
 
 bot.load_extensions_from("REINHARD/extensions/", must_exist=True)
 
-#def run() -> None:
 if __name__ == "__main__":
    if os.name != "nt":
       import uvloop

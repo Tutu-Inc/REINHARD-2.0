@@ -6,14 +6,10 @@ import lightbulb
 info_plugin = lightbulb.Plugin("Info")
 
 @info_plugin.command
-@lightbulb.option(
-   "target", "The member to get information about.", hikari.User, required=False
-)
-@lightbulb.command(
-   "userinfo", "Get info on a server member."
-)
+@lightbulb.option("target", "The member to get information about.", hikari.User, required=False)
+@lightbulb.command("userinfo", "Get info on a server member.")
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
-async def userinfo(ctx: lightbulb.Context) -> None:
+async def cmd_userinfo(ctx: lightbulb.Context) -> None:
    target = ctx.get_guild().get_member(ctx.options.target or ctx.user)
 
    if not target:
@@ -29,7 +25,7 @@ async def userinfo(ctx: lightbulb.Context) -> None:
       hikari.Embed(
          title=f"User Info - {target.display_name}",
          description=f"ID: `{target.id}`",
-         colour=0x3B9DFF,
+         colour=0x5865F2,
          timestamp=datetime.now().astimezone(),
       )
       .set_footer(
