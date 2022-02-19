@@ -1,6 +1,6 @@
 import hikari
 import lightbulb
-from data import TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID, Style
+from REINHARD.data import TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID, Style
 
 log_plugin = lightbulb.Plugin("Log")
 

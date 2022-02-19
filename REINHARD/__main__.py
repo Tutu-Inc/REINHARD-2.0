@@ -1,7 +1,7 @@
 import os
 import hikari
 import lightbulb
-from data import TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID, Style
+from REINHARD.data import TOKEN, DEFAULT_GUILD_ID, STDOUT_CHANNEL_ID, Style
 
 bot = lightbulb.BotApp(
    token = TOKEN,

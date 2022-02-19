@@ -1,6 +1,6 @@
 import hikari
 import lightbulb
-from data import GITHUB_LINK
+from REINHARD.data import GITHUB_LINK
 
 basic_plugin = lightbulb.Plugin("Basic")
 
