@@ -4,11 +4,12 @@ import hikari
 import lightbulb
  
 info_plugin = lightbulb.Plugin("Info")
+info_plugin.description = 'These are commands that provide information.'
 
 @info_plugin.command
 @lightbulb.option("target", "The member to get information about.", hikari.User, required=False)
 @lightbulb.command("userinfo", "Get info on a server member.")
-@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.SlashCommand)
 async def cmd_userinfo(ctx: lightbulb.Context) -> None:
    target = ctx.get_guild().get_member(ctx.options.target or ctx.user)
 
@@ -58,3 +59,6 @@ async def cmd_userinfo(ctx: lightbulb.Context) -> None:
 
 def load(bot: lightbulb.BotApp) -> None:
    bot.add_plugin(info_plugin)
+   
+def unload(bot: lightbulb.BotApp) -> None:
+   bot.remove_plugin(info_plugin)  

@@ -1,5 +1,9 @@
 import os
 from dotenv import load_dotenv
+#from pathlib import Path
+
+################extensionsPath################
+#EXTENSION_PREFIX = ".".join(Path(__file__).parts[-3:-1]) + "."
 
 ################colorPalette################
 class Style():
